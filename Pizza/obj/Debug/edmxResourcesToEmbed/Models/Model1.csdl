@@ -1,0 +1,212 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="PizzaNewModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Admin">
+    <Key>
+      <PropertyRef Name="Admin_ID" />
+    </Key>
+    <Property Name="Admin_ID" Type="Int32" Nullable="false" />
+    <Property Name="Admin_Name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="Admin_Password" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="Adimin_TitleID" Type="Int32" />
+    <Property Name="Adimin_Phone" Type="Int32" />
+  </EntityType>
+  <EntityType Name="District">
+    <Key>
+      <PropertyRef Name="District_ID" />
+    </Key>
+    <Property Name="District_ID" Type="Int32" Nullable="false" />
+    <Property Name="District_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="District_Address" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+    <Property Name="District_Phone" Type="Int32" />
+    <NavigationProperty Name="Pizza" Relationship="Self.FK_Pizza_District" FromRole="District" ToRole="Pizza" />
+  </EntityType>
+  <EntityType Name="Order">
+    <Key>
+      <PropertyRef Name="Order_ID" />
+    </Key>
+    <Property Name="Order_ID" Type="Int32" Nullable="false" />
+    <Property Name="Order_UserID" Type="Int32" />
+    <Property Name="Order_PizzaID" Type="Int32" />
+    <Property Name="Order_Address" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+    <Property Name="Order_Number" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="User" Relationship="Self.FK_Order_User" FromRole="Order" ToRole="User" />
+    <NavigationProperty Name="Purchase" Relationship="Self.FK_Purchase_Order" FromRole="Order" ToRole="Purchase" />
+  </EntityType>
+  <EntityType Name="Pizza">
+    <Key>
+      <PropertyRef Name="Pizza_ID" />
+    </Key>
+    <Property Name="Pizza_ID" Type="Int32" Nullable="false" />
+    <Property Name="Pizza_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Pizza_Price" Type="Int32" />
+    <Property Name="Pizza_Number" Type="Int32" />
+    <Property Name="Pizza_Pic" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="Pizza_DistrictID" Type="Int32" />
+    <Property Name="Pizza_TypeID" Type="Int32" />
+    <NavigationProperty Name="District" Relationship="Self.FK_Pizza_District" FromRole="Pizza" ToRole="District" />
+    <NavigationProperty Name="PizzaType" Relationship="Self.FK_Pizza_PizzaType" FromRole="Pizza" ToRole="PizzaType" />
+    <NavigationProperty Name="Purchase" Relationship="Self.FK_Purchase_Pizza" FromRole="Pizza" ToRole="Purchase" />
+  </EntityType>
+  <EntityType Name="PizzaType">
+    <Key>
+      <PropertyRef Name="PizzaType_ID" />
+    </Key>
+    <Property Name="PizzaType_ID" Type="Int32" Nullable="false" />
+    <Property Name="PizzaType_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Pizza" Relationship="Self.FK_Pizza_PizzaType" FromRole="PizzaType" ToRole="Pizza" />
+  </EntityType>
+  <EntityType Name="Purchase">
+    <Key>
+      <PropertyRef Name="Purchase_ID" />
+    </Key>
+    <Property Name="Purchase_ID" Type="Int32" Nullable="false" />
+    <Property Name="Purchase_UserID" Type="Int32" />
+    <Property Name="Purchase_DistrictID" Type="Int32" />
+    <Property Name="Purchase_PizzaID" Type="Int32" />
+    <Property Name="Purchase_OrderID" Type="Int32" />
+    <Property Name="Purchase_Number" Type="Int32" />
+    <Property Name="Purchase_Price" Type="Int32" />
+    <Property Name="Purchase_Date" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Purchase_No" Type="Int32" />
+    <NavigationProperty Name="Order" Relationship="Self.FK_Purchase_Order" FromRole="Purchase" ToRole="Order" />
+    <NavigationProperty Name="Pizza" Relationship="Self.FK_Purchase_Pizza" FromRole="Purchase" ToRole="Pizza" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="Title">
+    <Key>
+      <PropertyRef Name="Title_ID" />
+    </Key>
+    <Property Name="Title_ID" Type="Int32" Nullable="false" />
+    <Property Name="Title_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="User" Relationship="Self.FK_User_Title" FromRole="Title" ToRole="User" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="User_ID" />
+    </Key>
+    <Property Name="User_ID" Type="Int32" Nullable="false" />
+    <Property Name="User_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="User_Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="User_TitleID" Type="Int32" />
+    <Property Name="User_Address" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+    <Property Name="User_Phone" Type="Int32" />
+    <NavigationProperty Name="Order" Relationship="Self.FK_Order_User" FromRole="User" ToRole="Order" />
+    <NavigationProperty Name="Title" Relationship="Self.FK_User_Title" FromRole="User" ToRole="Title" />
+  </EntityType>
+  <Association Name="FK_Pizza_District">
+    <End Role="District" Type="Self.District" Multiplicity="0..1" />
+    <End Role="Pizza" Type="Self.Pizza" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="District">
+        <PropertyRef Name="District_ID" />
+      </Principal>
+      <Dependent Role="Pizza">
+        <PropertyRef Name="Pizza_DistrictID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Order_User">
+    <End Role="User" Type="Self.User" Multiplicity="0..1" />
+    <End Role="Order" Type="Self.Order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="User_ID" />
+      </Principal>
+      <Dependent Role="Order">
+        <PropertyRef Name="Order_UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Purchase_Order">
+    <End Role="Order" Type="Self.Order" Multiplicity="0..1" />
+    <End Role="Purchase" Type="Self.Purchase" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Order">
+        <PropertyRef Name="Order_ID" />
+      </Principal>
+      <Dependent Role="Purchase">
+        <PropertyRef Name="Purchase_OrderID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Pizza_PizzaType">
+    <End Role="PizzaType" Type="Self.PizzaType" Multiplicity="0..1" />
+    <End Role="Pizza" Type="Self.Pizza" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PizzaType">
+        <PropertyRef Name="PizzaType_ID" />
+      </Principal>
+      <Dependent Role="Pizza">
+        <PropertyRef Name="Pizza_TypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Purchase_Pizza">
+    <End Role="Pizza" Type="Self.Pizza" Multiplicity="0..1" />
+    <End Role="Purchase" Type="Self.Purchase" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Pizza">
+        <PropertyRef Name="Pizza_ID" />
+      </Principal>
+      <Dependent Role="Purchase">
+        <PropertyRef Name="Purchase_PizzaID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_User_Title">
+    <End Role="Title" Type="Self.Title" Multiplicity="0..1" />
+    <End Role="User" Type="Self.User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Title">
+        <PropertyRef Name="Title_ID" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="User_TitleID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="PizzaNewEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Admin" EntityType="Self.Admin" />
+    <EntitySet Name="District" EntityType="Self.District" />
+    <EntitySet Name="Order" EntityType="Self.Order" />
+    <EntitySet Name="Pizza" EntityType="Self.Pizza" />
+    <EntitySet Name="PizzaType" EntityType="Self.PizzaType" />
+    <EntitySet Name="Purchase" EntityType="Self.Purchase" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+    <EntitySet Name="Title" EntityType="Self.Title" />
+    <EntitySet Name="User" EntityType="Self.User" />
+    <AssociationSet Name="FK_Pizza_District" Association="Self.FK_Pizza_District">
+      <End Role="District" EntitySet="District" />
+      <End Role="Pizza" EntitySet="Pizza" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Order_User" Association="Self.FK_Order_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="Order" EntitySet="Order" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Purchase_Order" Association="Self.FK_Purchase_Order">
+      <End Role="Order" EntitySet="Order" />
+      <End Role="Purchase" EntitySet="Purchase" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Pizza_PizzaType" Association="Self.FK_Pizza_PizzaType">
+      <End Role="PizzaType" EntitySet="PizzaType" />
+      <End Role="Pizza" EntitySet="Pizza" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Purchase_Pizza" Association="Self.FK_Purchase_Pizza">
+      <End Role="Pizza" EntitySet="Pizza" />
+      <End Role="Purchase" EntitySet="Purchase" />
+    </AssociationSet>
+    <AssociationSet Name="FK_User_Title" Association="Self.FK_User_Title">
+      <End Role="Title" EntitySet="Title" />
+      <End Role="User" EntitySet="User" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

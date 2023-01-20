@@ -1,0 +1,104 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="PizzaNewModelStoreContainer" CdmEntityContainer="PizzaNewEntities">
+    <EntitySetMapping Name="Admin">
+      <EntityTypeMapping TypeName="PizzaNewModel.Admin">
+        <MappingFragment StoreEntitySet="Admin">
+          <ScalarProperty Name="Admin_ID" ColumnName="Admin_ID" />
+          <ScalarProperty Name="Admin_Name" ColumnName="Admin_Name" />
+          <ScalarProperty Name="Admin_Password" ColumnName="Admin_Password" />
+          <ScalarProperty Name="Adimin_TitleID" ColumnName="Adimin_TitleID" />
+          <ScalarProperty Name="Adimin_Phone" ColumnName="Adimin_Phone" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="District">
+      <EntityTypeMapping TypeName="PizzaNewModel.District">
+        <MappingFragment StoreEntitySet="District">
+          <ScalarProperty Name="District_ID" ColumnName="District_ID" />
+          <ScalarProperty Name="District_Name" ColumnName="District_Name" />
+          <ScalarProperty Name="District_Address" ColumnName="District_Address" />
+          <ScalarProperty Name="District_Phone" ColumnName="District_Phone" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Order">
+      <EntityTypeMapping TypeName="PizzaNewModel.Order">
+        <MappingFragment StoreEntitySet="Order">
+          <ScalarProperty Name="Order_ID" ColumnName="Order_ID" />
+          <ScalarProperty Name="Order_UserID" ColumnName="Order_UserID" />
+          <ScalarProperty Name="Order_PizzaID" ColumnName="Order_PizzaID" />
+          <ScalarProperty Name="Order_Address" ColumnName="Order_Address" />
+          <ScalarProperty Name="Order_Number" ColumnName="Order_Number" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Pizza">
+      <EntityTypeMapping TypeName="PizzaNewModel.Pizza">
+        <MappingFragment StoreEntitySet="Pizza">
+          <ScalarProperty Name="Pizza_ID" ColumnName="Pizza_ID" />
+          <ScalarProperty Name="Pizza_Name" ColumnName="Pizza_Name" />
+          <ScalarProperty Name="Pizza_Price" ColumnName="Pizza_Price" />
+          <ScalarProperty Name="Pizza_Number" ColumnName="Pizza_Number" />
+          <ScalarProperty Name="Pizza_Pic" ColumnName="Pizza_Pic" />
+          <ScalarProperty Name="Pizza_DistrictID" ColumnName="Pizza_DistrictID" />
+          <ScalarProperty Name="Pizza_TypeID" ColumnName="Pizza_TypeID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PizzaType">
+      <EntityTypeMapping TypeName="PizzaNewModel.PizzaType">
+        <MappingFragment StoreEntitySet="PizzaType">
+          <ScalarProperty Name="PizzaType_ID" ColumnName="PizzaType_ID" />
+          <ScalarProperty Name="PizzaType_Name" ColumnName="PizzaType_Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Purchase">
+      <EntityTypeMapping TypeName="PizzaNewModel.Purchase">
+        <MappingFragment StoreEntitySet="Purchase">
+          <ScalarProperty Name="Purchase_ID" ColumnName="Purchase_ID" />
+          <ScalarProperty Name="Purchase_UserID" ColumnName="Purchase_UserID" />
+          <ScalarProperty Name="Purchase_DistrictID" ColumnName="Purchase_DistrictID" />
+          <ScalarProperty Name="Purchase_PizzaID" ColumnName="Purchase_PizzaID" />
+          <ScalarProperty Name="Purchase_OrderID" ColumnName="Purchase_OrderID" />
+          <ScalarProperty Name="Purchase_Number" ColumnName="Purchase_Number" />
+          <ScalarProperty Name="Purchase_Price" ColumnName="Purchase_Price" />
+          <ScalarProperty Name="Purchase_Date" ColumnName="Purchase_Date" />
+          <ScalarProperty Name="Purchase_No" ColumnName="Purchase_No" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="PizzaNewModel.sysdiagrams">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Title">
+      <EntityTypeMapping TypeName="PizzaNewModel.Title">
+        <MappingFragment StoreEntitySet="Title">
+          <ScalarProperty Name="Title_ID" ColumnName="Title_ID" />
+          <ScalarProperty Name="Title_Name" ColumnName="Title_Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="User">
+      <EntityTypeMapping TypeName="PizzaNewModel.User">
+        <MappingFragment StoreEntitySet="User">
+          <ScalarProperty Name="User_ID" ColumnName="User_ID" />
+          <ScalarProperty Name="User_Name" ColumnName="User_Name" />
+          <ScalarProperty Name="User_Password" ColumnName="User_Password" />
+          <ScalarProperty Name="User_TitleID" ColumnName="User_TitleID" />
+          <ScalarProperty Name="User_Address" ColumnName="User_Address" />
+          <ScalarProperty Name="User_Phone" ColumnName="User_Phone" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
